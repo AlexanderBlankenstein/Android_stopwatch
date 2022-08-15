@@ -2,6 +2,7 @@ package com.example.stopwatch;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.View;
 
 public class StopwatchActivity extends Activity {
 
@@ -15,11 +16,18 @@ public class StopwatchActivity extends Activity {
     }
 
     //Start the stopwatch running when the Start button is clicked.
-    //TODO: create onClick method for Start and set running.
+    public void onClickStart(View view) {
+        running = true;
+    }
 
     //Stop the stopwatch running when the Stop button is clicked
-    //TODO: create onClick method for Stop and set running.
+    public void onClickStop(View view) {
+        running = false;
+    }
 
     //Reset the stopwatch when the Reset button
-    //TODO: create onClick method for reset and set running and seconds.
+    public void onClickReset(View view) {
+        running = false;
+        seconds = 0;
+    }
 }
