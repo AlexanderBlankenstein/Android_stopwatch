@@ -18,8 +18,18 @@ public class StopwatchActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stopwatch);
-
+        //If app was destroyed prior, reload from saved state.
+        if (savedInstanceState != null) {
+            seconds = savedInstanceState.getInt("seconds");
+            running = savedInstanceState.getBoolean("running");
+        }
         runTimer();
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        savedInstanceState.putInt("seconds", seconds);
+        savedInstanceState.putBoolean("running", running);
     }
 
     //Start the stopwatch running when the Start button is clicked.
@@ -57,7 +67,8 @@ public class StopwatchActivity extends Activity {
                     seconds++;
                 }
 
-                //delay post so that display only changes after a second.
+                //Delay post so that display only changes after a second.
+                // This makes it not very accurate but shows example of a delay.
                 handler.postDelayed(this, 1000);
             }
         });
