@@ -4,7 +4,7 @@ A simple stopwatch app that implemments Saved States, a Handler, resources and c
 
 ## Installation
 
-For use within AndroidStudio or similar IDEAs.
+For use within AndroidStudio or similar IDEs.
 
 ## Contributing
 
@@ -16,4 +16,4 @@ For use within AndroidStudio or similar IDEAs.
 
 ## History
 
-created on 15-08-202
+created on 15-08-2022
