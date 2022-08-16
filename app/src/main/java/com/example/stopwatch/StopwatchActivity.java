@@ -13,6 +13,8 @@ public class StopwatchActivity extends Activity {
     private int seconds = 0;
     //is the stopwatch running?
     private boolean running;
+    //was stopwatch running before onStop method call?
+    private boolean wasRunning;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +24,7 @@ public class StopwatchActivity extends Activity {
         if (savedInstanceState != null) {
             seconds = savedInstanceState.getInt("seconds");
             running = savedInstanceState.getBoolean("running");
+            wasRunning = savedInstanceState.getBoolean("wasRunning");
         }
         runTimer();
     }
@@ -30,6 +33,24 @@ public class StopwatchActivity extends Activity {
     public void onSaveInstanceState(Bundle savedInstanceState) {
         savedInstanceState.putInt("seconds", seconds);
         savedInstanceState.putBoolean("running", running);
+        savedInstanceState.putBoolean("wasRunning", wasRunning);
+    }
+
+    //If activity is paused, stop the stopwatch
+    @Override
+    protected void onPause() {
+        super.onPause();
+        wasRunning = running;
+        running = false;
+    }
+
+    //If stopwatch was running when it was paused, then set it to running again.
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (wasRunning) {
+           running = true;
+        }
     }
 
     //Start the stopwatch running when the Start button is clicked.
